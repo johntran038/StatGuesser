@@ -33,6 +33,25 @@
   }
 }
 
+@keyframes shake {
+  /* 50% {
+    transform: translateX(-0.2em);
+  }
+  100% {
+    transform: translateX(0.2em);
+  } */
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-0.2em); }
+  40% { transform: translateX(0.2em); }
+  60% { transform: translateX(-0.2em); }
+  80% { transform: translateX(0.2em); }
+  100% { transform: translateX(0); }
+}
+
+#root {
+  margin: 0 auto;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -42,7 +61,6 @@
 body {
   margin: 0;
   display: flex;
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -63,26 +81,26 @@ button {
 }
 
 .letterbox {
-  border-radius: 8px;
   border: 1px solid transparent;
-  font-size: 1em;
+  /* font-size: 1em; */
   font-weight: 500;
   font-family: inherit;
-  /* background-color: white; */
-  margin: 0.5em;
-  width: 2.5em;
-  height: 2.5em;
+  background-color: white;
+  /* margin: 0.5em; */
+  /* width: 2.5em;
+  height: 2.5em; */
   display:flex;
   flex-direction: column;
   justify-content: center;
-  outline: solid gray 3px;
+  align-items: center; 
+  /* outline: solid gray 3px; */
 }
 
 .guessingUI {
   outline: solid black 1px;
-  min-height: 20em;
-  min-width: 200px;
-  place-items: center;
+  /* min-height: 280px; */
+  /* min-width: 280px; */
+  /* place-items: center; */
 }
 
 .revealed-letter.correct {
@@ -90,9 +108,13 @@ button {
 }
 
 .revealed-letter.almost-correct {
-  animation: flip 0.5s forwards, color-almost-correct 0.5s forwards;;
+  animation: flip 0.5s forwards, color-almost-correct 0.5s forwards;
 }
 
 .revealed-letter.incorrect   {
-  animation: flip 0.5s forwards, color-incorrect 0.5s forwards;;
+  animation: flip 0.5s forwards, color-incorrect 0.5s forwards;
+}
+
+.shake-animation{
+  animation: shake 0.2s 2;
 }

@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo } from "react";
 import LetterBlock from "../components/LetterBlock";
 
-const GuessAttempt = ({ guess, answer, reveal}) => {
+const GuessAttempt = ({ guess, answer, reveal }) => {
 
     const validateGuess = useMemo(() => {
-        if(!answer || !reveal){
+        if (!answer || !reveal) {
             return [];
         }
         const incorrect = 0;
@@ -14,7 +14,7 @@ const GuessAttempt = ({ guess, answer, reveal}) => {
         //ex: result = [0,0,0,0,0]
         const answerCount = {};
 
-        for(let letter of answer){
+        for (let letter of answer) {
             //ex: happy -> {h:1, a:1, p:2, y:1}
             answerCount[letter] = (answerCount[letter] || 0) + 1;
         }
@@ -28,13 +28,13 @@ const GuessAttempt = ({ guess, answer, reveal}) => {
                 answerCount[guess[i]]--;
             }
         }
-        
+
         //if correct letter but wrong place, set result to 1(almost correct) and remove letter from answerCount
         for (let i = 0; i < guess.length; i++) {
-        //  ex when i=3 and guess = lunar:
-        //  0,0,0,[0],0 == 0         and  answerCount[a] > 1
-            if(result[i] == incorrect && answerCount[guess[i]] > 0){
-            //result = [0,0,0,1,0]  answerCount = {h:1, a:0, p:2, y:1}
+            //  ex when i=3 and guess = lunar:
+            //  0,0,0,[0],0 == 0         and  answerCount[a] > 1
+            if (result[i] == incorrect && answerCount[guess[i]] > 0) {
+                //result = [0,0,0,1,0]  answerCount = {h:1, a:0, p:2, y:1}
                 result[i] = almostCorrect;
                 answerCount[guess[i]]--;
             }
@@ -44,15 +44,15 @@ const GuessAttempt = ({ guess, answer, reveal}) => {
 
     }, [guess, answer, reveal]);
 
-    useEffect(()=>{console.log(validateGuess)},[reveal])
-    
+    useEffect(() => { console.log(validateGuess) }, [reveal])
+
     return (<>
         <span className="flex">
             {
                 guess.map((letter, index) =>
                     <LetterBlock
                         key={index} Letter={letter} reveal={reveal}
-                        delay={index*0.2}
+                        delay={index * 0.2}
                         color={validateGuess[index]}
                     />
                 )
