@@ -1,3 +1,38 @@
+@import "tailwindcss";
+
+@keyframes flip {
+  50% {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes color-correct {
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: green;
+  }
+}
+
+@keyframes color-almost-correct {
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: yellow;
+  }
+}
+
+@keyframes color-incorrect {
+  50% {
+    background-color: white;
+  }
+  100% {
+    background-color: gray;
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -7,7 +42,7 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -25,7 +60,6 @@ button {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
 .letterbox {
@@ -34,9 +68,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  background-color: white;
+  /* background-color: white; */
   margin: 0.5em;
   width: 2.5em;
   height: 2.5em;
@@ -44,4 +76,23 @@ button {
   flex-direction: column;
   justify-content: center;
   outline: solid gray 3px;
+}
+
+.guessingUI {
+  outline: solid black 1px;
+  min-height: 20em;
+  min-width: 200px;
+  place-items: center;
+}
+
+.revealed-letter.correct {
+  animation: flip 0.5s forwards, color-correct 0.5s forwards;
+}
+
+.revealed-letter.almost-correct {
+  animation: flip 0.5s forwards, color-almost-correct 0.5s forwards;;
+}
+
+.revealed-letter.incorrect   {
+  animation: flip 0.5s forwards, color-incorrect 0.5s forwards;;
 }
