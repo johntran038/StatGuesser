@@ -97,6 +97,7 @@ button {
 }
 
 .guessingUI {
+  margin-top: 2em;
   outline: solid black 1px;
   /* min-height: 280px; */
   /* min-width: 280px; */

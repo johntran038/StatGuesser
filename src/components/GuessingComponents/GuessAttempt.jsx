@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import LetterBlock from "../components/LetterBlock";
+import LetterBlock from "./LetterBlock";
 
 const GuessAttempt = ({ guess, answer, reveal }) => {
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import GuessAttempt from "../components/GuessAttempt";
+import GuessAttempt from "./GuessAttempt";
 
 const GuessingUI = () => {
     const [guessHistory, setGuessHistory] = useState([]);

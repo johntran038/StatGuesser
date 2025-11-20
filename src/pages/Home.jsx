@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import GuessingUI from "../components/GuessingUI";
+import GuessingUI from "../components/GuessingComponents/GuessingUI";
 
 const Home = () => {
 
