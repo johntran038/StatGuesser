@@ -11,7 +11,13 @@ const GuessingUI = () => {
     const MAX_GUESSES_ALLOWED = 6;
 
     //move this somewjere else
-    const testWord = "HAPPY".split('');
+    //using colors as an example
+    const randomInt = (max)=>{return Math.floor(Math.random() * max)}
+    let colorList = ["RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE"]
+    // const testWord = colorList[randomInt(colorList.length)];
+    const testWord = "TURKEY".split("");
+    console.log(testWord);
+    
 
     useEffect(() => {
         const keyPressEvent = (e) => {
