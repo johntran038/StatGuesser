@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from "react";
 
-const StatUI = () => {
+const StatUI = ({ currentWordDesc }) => {
+    const [wordDescription, setWordDescription] = useState("");
+    useEffect(() => { //Testing purposes
+        setWordDescription(currentWordDesc);
+    }, [currentWordDesc]);
 
     return (<section className="mt-[2em]">
         <div className="grid grid-cols-2">
             <div>
-                <h2>Name</h2>
-                type
-                <h2>Stats</h2>
-                ac
-                hp
-                speed
+                <h2>Name: {wordDescription?.name ?? "Unknown"}</h2>
+                <h2>Type: {wordDescription?.type ?? "Unknown"}</h2>
+                <h2>---Stats---</h2>
+                {/* <p>AC: {wordDescription?.armor_class ?? "Unknown"}</p> */}
+                <p>HP: {wordDescription?.hit_points ?? "Unknown"}</p>
+                {/* <p>Speed: {wordDescription?.speed ?? "Unknown"}</p> */}
 
-                str dex con
-                int wis cha
-                <h2>Proficiencies</h2>
+                <b>str: {wordDescription?.strength ?? "Unknown"}</b>
+                <b>dex: {wordDescription?.dexterity ?? "Unknown"}</b>
+                <b>con: {wordDescription?.constitution ?? "Unknown"}</b>
+                <b>int: {wordDescription?.intelligence ?? "Unknown"}</b>
+                <b>wis: {wordDescription?.wisdom ?? "Unknown"}</b>
+                <b>cha: {wordDescription?.charisma ?? "Unknown"}</b>
+                
+                <h2>---Proficiencies---</h2>
                 skills
                 senses
                 languages

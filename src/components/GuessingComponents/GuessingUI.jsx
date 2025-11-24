@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from "react";
 import GuessAttempt from "./GuessAttempt";
 
-const GuessingUI = () => {
+const GuessingUI = ({currentWord}) => {
     const [guessHistory, setGuessHistory] = useState([]);
     const [currentGuess, setCurrentGuess] = useState([]);
     const [lettersTyped, setLettersTyped] = useState(0);
     const [shakeAnimation, setShakeAnimation] = useState(false);
 
     const MAX_LETTERS_ALLOWED = 22;
-    const MAX_GUESSES_ALLOWED = 6;
-
-    //move this somewjere else
-    //using colors as an example
-    const randomInt = (max)=>{return Math.floor(Math.random() * max)}
-    let colorList = ["RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE"]
-    // const testWord = colorList[randomInt(colorList.length)];
-    const testWord = "TURKEY".split("");
-    console.log(testWord);
-    
+    const MAX_GUESSES_ALLOWED = 999;
 
     useEffect(() => {
         const keyPressEvent = (e) => {
@@ -74,7 +65,7 @@ const GuessingUI = () => {
         <div className="hidden xl:block">xl</div> */}
         {
             guessHistory.map((guess, index) =>
-                <GuessAttempt key={index} guess={guess} answer={testWord} reveal={true} a={"real"} />
+                <GuessAttempt key={index} guess={guess} answer={currentWord} reveal={true} a={"real"} />
             )
         }
         <div className={shakeAnimation ? "shake-animation" : ""}>

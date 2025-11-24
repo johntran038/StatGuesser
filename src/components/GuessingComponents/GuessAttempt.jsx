@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import LetterBlock from "./LetterBlock";
 
 const GuessAttempt = ({ guess, answer, reveal }) => {
-
+    
     const validateGuess = useMemo(() => {
         if (!answer || !reveal) {
             return [];
