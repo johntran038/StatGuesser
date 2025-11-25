@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GuessAttempt from "./GuessAttempt";
 
-const GuessingUI = ({ currentWord, listOfMonsters }) => {
+const GuessingUI = ({ currentWord, listOfMonsters, maxLength }) => {
     const [guessHistory, setGuessHistory] = useState([]);
     const [currentGuess, setCurrentGuess] = useState([]);
     const [lettersTyped, setLettersTyped] = useState(0);
@@ -9,8 +9,8 @@ const GuessingUI = ({ currentWord, listOfMonsters }) => {
 
     const [isControlHeld, setIsControlHeld] = useState(false);
 
-    const MAX_LETTERS_ALLOWED = 22;
-    const MAX_GUESSES_ALLOWED = 999;
+    const MAX_LETTERS_ALLOWED = maxLength;
+    const MAX_GUESSES_ALLOWED = 6;
 
     const findMonster = (word) => {
         return listOfMonsters.includes(word);

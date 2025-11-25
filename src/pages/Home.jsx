@@ -5,7 +5,7 @@ import useMonster from "../hooks/useMonster";
 
 const Home = () => {
 
-    const { loading, currentWord, currentWordDetails, listOfMonsters } = useMonster();
+    const { loading, currentWord, currentWordDetails, listOfMonsters, maxLength } = useMonster();
 
     if (loading) {
         return <p>Loading...</p>; // Wait until API is ready
@@ -16,7 +16,7 @@ const Home = () => {
         <div className="flex justify-center">
         <StatUI currentWordDetails={currentWordDetails} />
         </div>
-        <GuessingUI currentWord={currentWord} listOfMonsters={listOfMonsters} />
+        <GuessingUI currentWord={currentWord} listOfMonsters={listOfMonsters} maxLength={maxLength} />
     </div>);
 };
 

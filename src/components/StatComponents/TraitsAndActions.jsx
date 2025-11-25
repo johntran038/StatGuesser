@@ -10,7 +10,7 @@ const TraitsAndActions = ({ data }) => {
         return (
             <p key={index} className="space-x-2">
                 <span className="font-[600]">{name}.</span>
-                <span className="">{desc}</span>
+                <span>{desc}</span>
             </p>
         );
     };

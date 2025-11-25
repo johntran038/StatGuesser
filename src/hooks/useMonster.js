@@ -5,6 +5,7 @@ const useMonster = () => {
   const [currentWord, setCurrentWord] = useState([]);
   const [currentWordDetails, setCurrentWordDetails] = useState(null);
   const [listOfMonsters, setListOfMonsters] = useState(null);
+  const [maxLength, setMaxLength] = useState(null);
 
   const formatWord = (word) => {
     return word.toUpperCase().replace(/[^a-zA-Z]/g, "")
@@ -22,7 +23,11 @@ const useMonster = () => {
         const word = data.results[randomIndex].name;
         const index = data.results[randomIndex].index;
 
-        setListOfMonsters(data.results.map(result=>formatWord(result.name)));
+        // Set up all monster list and max length
+        const allMonsters = data.results.map(result=>formatWord(result.name));
+
+        setListOfMonsters(allMonsters);
+        setMaxLength(Math.max(...allMonsters.map(name => name.length)));
         
         // Format word for guessing UI
         setCurrentWord(formatWord(word).split(""));
@@ -47,7 +52,7 @@ const useMonster = () => {
     fetchMonster();
   }, []);
 
-  return { loading, currentWord, currentWordDetails, listOfMonsters };
+  return { loading, currentWord, currentWordDetails, listOfMonsters, maxLength };
 };
 
 export default useMonster;
