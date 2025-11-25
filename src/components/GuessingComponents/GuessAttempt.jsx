@@ -32,7 +32,7 @@ const GuessAttempt = ({ guess, answer, reveal }) => {
         //if correct letter but wrong place, set result to 1(almost correct) and remove letter from answerCount
         for (let i = 0; i < guess.length; i++) {
             //  ex when i=3 and guess = lunar:
-            //  0,0,0,[0],0 == 0         and  answerCount[a] > 1
+            //  0,0,0,[0],0 == 0       and       answerCount[a] > 0
             if (result[i] == incorrect && answerCount[guess[i]] > 0) {
                 //result = [0,0,0,1,0]  answerCount = {h:1, a:0, p:2, y:1}
                 result[i] = almostCorrect;
