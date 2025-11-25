@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import BasicStats from "./BasicStats";
 import StatModifier from "./StatModifiers";
+import ExtraStats from "./ExtraStats";
+import TraitsAndActions from "./TraitsAndActions";
 
-const StatUI = ({ currentWordDesc }) => {
-    const [wordDescription, setWordDescription] = useState("");
-    useEffect(() => { //Testing purposes
-        setWordDescription(currentWordDesc);
-    }, [currentWordDesc]);
+const StatUI = ({ currentWordDetails }) => {
+    const [wordDetails, setWordDetails] = useState();
 
     const flattingDictionary = (list) => {
         if (!list) return ''; // or return a fallback string
@@ -14,48 +14,78 @@ const StatUI = ({ currentWordDesc }) => {
             .join(', ');
     };
 
-    const getAC = () => {
-        if(!wordDescription?.armor_class) return "Unknown";
-        return wordDescription?.armor_class[0].value;
-    }
+    const get = (type) => {
+        if (!wordDetails?.[type]) return "N/A";
+        return wordDetails?.[type];
+    };
 
     useEffect(() => {
-        // console.log(wordDescription?.armor_class, " dfsdfsdf");
-    }, [wordDescription]);
+        setWordDetails(currentWordDetails);
+    }, [currentWordDetails]);
+
+    useEffect(() => {
+        console.log(wordDetails?.legendary_actions, " dfsdfsdf");
+    }, [wordDetails]);
 
 
-    return (<section className="mt-[2em]">
-        <div className="grid grid-cols-2">
-            <div>
-                <h2>Name: {wordDescription?.name ?? "Unknown"}</h2>
-                <h2>Type: {wordDescription?.type ?? "Unknown"}</h2>
-                <h2>---Stats---</h2>
-                <p>AC: {getAC()}</p>
-                <p>HP: {wordDescription?.hit_points ?? "Unknown"}</p>
-                <p>Speed: {flattingDictionary(wordDescription?.speed) ?? "Unknown"}</p>
+    return (<section className="mt-[2em] px-10 w-[60em]">
+        {wordDetails && (<div className="grid grid-cols-2">
+            <div className="mr-10">
+                <section>
+                    <h2>Name: {get("name")}</h2>
+                    <h2>Type: {get("type")}</h2>
+                </section>
 
-                <StatModifier
-                    strength={wordDescription?.strength ?? "Unknown"}
-                    dexterity={wordDescription?.dexterity ?? "Unknown"}
-                    constitution={wordDescription?.constitution ?? "Unknown"}
-                    intelligence={wordDescription?.intelligence ?? "Unknown"}
-                    wisdom={wordDescription?.wisdom ?? "Unknown"}
-                    charisma={wordDescription?.charisma ?? "Unknown"}
-                />
+                <section>
+                    <h2>---Stats---</h2>
+                    <BasicStats
+                        ac={get("armor_class")}
+                        hp={get("hit_points")}
+                        speed={get("speed")}
+                        flattingDictionary={flattingDictionary}
+                    />
 
-                <h2>---Proficiencies---</h2>
-                skills
-                senses
-                languages
-                cr
+                    <StatModifier
+                        strength={get("strength")}
+                        dexterity={get("dexterity")}
+                        constitution={get("constitution")}
+                        intelligence={get("intelligence")}
+                        wisdom={get("wisdom")}
+                        charisma={get("charisma")}
+                    />
+                </section>
+
+                <section>
+                    <h2>---Extra---</h2>
+                    <ExtraStats
+                        proficiencies={get("proficiencies")}
+                        senses={get("senses")}
+                        languages={get("languages")}
+                        cr={get("challenge_rating")}
+                        xp={get("xp")}
+                        pb={get("proficiency_bonus")}
+                        flattingDictionary={flattingDictionary}
+                    />
+                </section>
             </div>
             <div>
-                <h2>Traits</h2>
-                desc
-                <h2>Actions</h2>
-                abilities
+                <h2>---Traits---</h2>
+                <TraitsAndActions
+                    data={get("special_abilities")}
+                />
+                <h2>---Actions---</h2>
+                <TraitsAndActions
+                    data={get("actions")}
+                />
+                {(get("legendary_actions") != "N/A" && get("legendary_actions").length > 0) && (<>
+                    <h2>---Legendary Actions---</h2>
+                    <TraitsAndActions
+                        data={get("legendary_actions")}
+                    />
+                </>)}
             </div>
         </div>
+        )}
     </section>);
 };
 

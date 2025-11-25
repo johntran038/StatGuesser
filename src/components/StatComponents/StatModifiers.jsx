@@ -6,18 +6,20 @@ const StatModifiers = ({ strength, dexterity, constitution, intelligence, wisdom
     const topStyle = "bg-green-300";
     const buttomStyle = "bg-blue-300";
 
+    const modifierStyle = "mr-[10px] font-[600]";
+
     return (<>
-        <table className="table-auto border-separate border-spacing-x-2">
+        <table>
             <tbody>
-                <tr>
-                    <td className={`${tdStyle} ${topStyle}`}><span style={{marginRight: "10px"}}>STR:</span> {strength}</td>
-                    <td className={`${tdStyle} ${topStyle}`}><span style={{marginRight: "10px"}}>DEX:</span> {dexterity}</td>
-                    <td className={`${tdStyle} ${topStyle}`}><span style={{marginRight: "10px"}}>CON:</span> {constitution}</td>
+                <tr className="grid grid-cols-3 gap-4">
+                    <td className={`${tdStyle} ${topStyle}`}><span className={`${modifierStyle}`}>STR:</span> {strength}</td>
+                    <td className={`${tdStyle} ${topStyle}`}><span className={`${modifierStyle}`}>DEX:</span> {dexterity}</td>
+                    <td className={`${tdStyle} ${topStyle}`}><span className={`${modifierStyle}`}>CON:</span> {constitution}</td>
                 </tr>
-                <tr>
-                    <td className={`${tdStyle} ${buttomStyle}`}><span style={{marginRight: "10px"}}>INT:</span> {intelligence}</td>
-                    <td className={`${tdStyle} ${buttomStyle}`}><span style={{marginRight: "10px"}}>WIS:</span> {wisdom}</td>
-                    <td className={`${tdStyle} ${buttomStyle}`}><span style={{marginRight: "10px"}}>CHA:</span> {charisma}</td>
+                <tr className="grid grid-cols-3 gap-4">
+                    <td className={`${tdStyle} ${buttomStyle}`}><span className={`${modifierStyle}`}>INT:</span> {intelligence}</td>
+                    <td className={`${tdStyle} ${buttomStyle}`}><span className={`${modifierStyle}`}>WIS:</span> {wisdom}</td>
+                    <td className={`${tdStyle} ${buttomStyle}`}><span className={`${modifierStyle}`}>CHA:</span> {charisma}</td>
                 </tr>
             </tbody>
         </table>
