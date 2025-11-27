@@ -38,7 +38,8 @@ const useMonster = () => {
         // Fetch monster details
         const detailRes = await fetch(
           `https://www.dnd5eapi.co/api/2014/monsters/${monsterIndex}`
-        //   `https://www.dnd5eapi.co/api/2014/monsters/ancient-black-dragon`
+          // `https://www.dnd5eapi.co/api/2014/monsters/ancient-black-dragon`
+          // `https://www.dnd5eapi.co/api/2014/monsters/young-brass-dragon`
         );
         const detailData = await detailRes.json();
         setCurrentWordDetails(detailData);

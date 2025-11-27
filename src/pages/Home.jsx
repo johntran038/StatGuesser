@@ -4,8 +4,9 @@ import StatUI from "../components/StatComponents/StatUI";
 import useMonster from "../hooks/useMonster";
 
 const Home = () => {
-
     const { loading, currentWord, currentWordDetails, listOfMonsters, maxLength } = useMonster();
+
+    const [hasWon, setHasWon] = useState(false);
 
     if (loading) {
         return <p>Loading...</p>; // Wait until API is ready
@@ -13,10 +14,16 @@ const Home = () => {
 
     return (<div>
         {/* The currentWordDesc is in JSON. Format it in the StatUI component */}
+        {hasWon&&<div>You have won!</div>}
         <div className="flex justify-center">
-        <StatUI currentWordDetails={currentWordDetails} />
+        <GuessingUI currentWord={currentWord}
+                    listOfMonsters={listOfMonsters} maxLength={maxLength}
+                    setHasWon={setHasWon}
+        />
         </div>
-        <GuessingUI currentWord={currentWord} listOfMonsters={listOfMonsters} maxLength={maxLength} />
+        <div className="flex justify-center">
+        <StatUI currentWordDetails={currentWordDetails} reveal={hasWon}/>
+        </div>
     </div>);
 };
 

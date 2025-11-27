@@ -12,6 +12,23 @@ const ExtraStats = ({ proficiencies, senses, languages, cr, xp, pb, flattingDict
         );
     };
 
+    const getSense = (sense) => {
+        return sense.replaceAll("_", ' ').replace(
+            /\w\S*/g,
+            text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+        );
+    }
+
+    const formatSenses = (senses) => {
+        let formatedResult = {};
+        for (let sense in senses)
+            formatedResult[getSense(sense)] = senses[sense];
+
+        return formatedResult;
+    }
+
+    console.log(formatSenses(senses), "gfdsggg", senses);
+
     return (<>
         <p className="space-x-2">
             <span>Skills:</span>
@@ -23,7 +40,7 @@ const ExtraStats = ({ proficiencies, senses, languages, cr, xp, pb, flattingDict
                 <span>N/A</span>
             )}
         </p>
-        <p>Senses: {flattingDictionary(senses)}</p>
+        <p>Senses: {flattingDictionary(formatSenses(senses))}</p>
         <p>Languages: {languages}</p>
         <span>CR {cr} </span>
         <span>(XP {xp}, </span>

@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo } from "react";
 import LetterBlock from "./LetterBlock";
 
-const GuessAttempt = ({ guess, answer, reveal }) => {
+const GuessAttempt = ({ guess, answer, reveal, onComplete }) => {
     
     const validateGuess = useMemo(() => {
         if (!answer || !reveal) {
             return [];
         }
+        
         const incorrect = 0;
         const almostCorrect = 1;
         const correct = 2;
@@ -54,6 +55,8 @@ const GuessAttempt = ({ guess, answer, reveal }) => {
                         key={index} Letter={letter} reveal={reveal}
                         delay={index * 0.2}
                         color={validateGuess[index]}
+                        isLastLetter={index==guess.length-1}
+                        onComplete={onComplete}
                     />
                 )
             }
