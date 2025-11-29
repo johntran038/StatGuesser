@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GuessingUI from "../components/GuessingComponents/GuessingUI";
 import StatUI from "../components/StatComponents/StatUI";
 import useMonster from "../hooks/useMonster";
+import ListOfMonsters from "../components/ListOfMonsters";
 
 const Home = () => {
     const { loading, currentWord, currentWordDetails, listOfMonsters, maxLength } = useMonster();
@@ -37,6 +38,7 @@ const Home = () => {
                 maxGuesses={maxGuesses}
             />
         </div>
+        <ListOfMonsters list={listOfMonsters}/>
     </div>);
 };
 

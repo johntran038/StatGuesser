@@ -11,7 +11,6 @@ const TraitsAndActions = ({ data, answer, censor }) => {
 
         return (
             <div key={index} className="space-x-2">
-                {/* <span className="font-[600]">{name}.</span> */}
                 <span className="font-[600]"><CensorAnswer censor={censor} answer={answer} description={name}/>.</span>
                 <CensorAnswer censor={censor} answer={answer} description={desc}/>
             </div>

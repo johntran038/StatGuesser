@@ -12,7 +12,7 @@ const BasicStats = ({ ac, hp, speed, flattingDictionary }) => {
         return flattingDictionary(speed);
     }
 
-    return (<section>
+    return (<section className="space-y-1 mb-2">
         <div><span className="font-[600]">AC:</span> {getAC()}</div>
         <div><span className="font-[600]">HP:</span> {hp}</div>
         <div><span className="font-[600]">Speed:</span> {getSpeed()}</div>

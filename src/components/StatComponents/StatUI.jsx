@@ -49,7 +49,7 @@ const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses }) => {
                 />
             </div>
             <div className="mr-10">
-                <StatToggle className="mb-3" title={"Stats"}>
+                <StatToggle className="mb-3 space-y-1" title={"Stats"}>
 
                     <BasicStats
                         ac={get("armor_class")}
@@ -68,7 +68,7 @@ const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses }) => {
                     />
                 </StatToggle>
 
-                <StatToggle className="mb-3" title={"Extra"}>
+                <StatToggle className="mb-3 space-y-1" title={"Extra"}>
                     <ExtraStats
                         proficiencies={get("proficiencies")}
                         senses={get("senses")}
@@ -81,25 +81,25 @@ const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses }) => {
                         censor={!reveal}
                     />
                 </StatToggle>
-            </div>
-            <div>
-                <StatToggle className="mb-3" title={"Traits"}>
-                    <TraitsAndActions
-                        data={get("special_abilities")}
-                        answer={get("name")}
-                        censor={!reveal}
-                    />
-                </StatToggle>
-                <StatToggle className="mb-3" title={"Actions"}>
+                <StatToggle className="mb-3 space-y-1" title={"Actions"}>
                     <TraitsAndActions
                         data={get("actions")}
                         answer={get("name")}
                         censor={!reveal}
                     />
                 </StatToggle>
+            </div>
+            <div>
+                <StatToggle className="mb-3 space-y-1" title={"Traits"}>
+                    <TraitsAndActions
+                        data={get("special_abilities")}
+                        answer={get("name")}
+                        censor={!reveal}
+                    />
+                </StatToggle>
 
                 {(get("legendary_actions") != "N/A" && get("legendary_actions").length > 0) && (<>
-                    <StatToggle title={"Legendary Actions"}>
+                    <StatToggle className="space-y-1" title={"Legendary Actions"}>
                         <TraitsAndActions
                             data={get("legendary_actions")}
                             answer={get("name")}

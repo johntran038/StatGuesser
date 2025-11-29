@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const LetterBlock = ({Letter, reveal, delay, color, isLastLetter, onComplete}) => {
+const LetterBlock = ({className, Letter, reveal, delay, color, isLastLetter, onComplete}) => {
 
     const colors={0: 'incorrect', 1:'almost-correct', 2: 'correct'}
 
     const letterStyle = reveal ? `${colors[color]} revealed-letter`: "";
 
-    return(<>
+    return(<div className={className}>
         {/* <div className={`letterbox ${letterStyle}`} style={{animationDelay:`${delay}s`}}>{Letter}</div> */}
         <div className={`
             letterbox ${letterStyle}
@@ -21,7 +21,7 @@ const LetterBlock = ({Letter, reveal, delay, color, isLastLetter, onComplete}) =
             }
         }}
         style={{animationDelay:`${delay}s`}}>{Letter}</div>
-    </>)
+    </div>)
 };
 
 export default LetterBlock;

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import GuessAttempt from "./GuessAttempt";
+import LetterBlock from "./LetterBlock";
 
-const GuessingUI = ({ currentWord, listOfMonsters, maxLength, maxGuesses, setHasWon, setHasLost, setAttemptCount }) => {
+const GuessingUI = ({ currentWord, listOfMonsters,
+                      maxLength, maxGuesses,
+                      setHasWon, setHasLost, setAttemptCount
+                    }) => {
     const [guessHistory, setGuessHistory] = useState([]);
     const [currentGuess, setCurrentGuess] = useState([]);
     const [lettersTyped, setLettersTyped] = useState(0);
+    const [showBlinker, setShowBlinker] = useState(true);
     const [shakeAnimation, setShakeAnimation] = useState(false);
 
     const [isControlHeld, setIsControlHeld] = useState(false);
@@ -25,6 +30,7 @@ const GuessingUI = ({ currentWord, listOfMonsters, maxLength, maxGuesses, setHas
 
     useEffect(() => {
         const keyPressEvent = (e) => {
+            setShowBlinker(false);
             if (guessHistory.length >= MAX_GUESSES_ALLOWED
                 || isControlHeld || isCorrectWord) {
                 return;
@@ -43,22 +49,6 @@ const GuessingUI = ({ currentWord, listOfMonsters, maxLength, maxGuesses, setHas
                 setGuessHistory(attempt => [...attempt, currentGuess]);
                 setAttemptCount(count => count + 1);
                 setCurrentGuess([]);
-                // validateGuess(currentGuess);
-                // setGuessHistory(attempt => {
-                //     const newHistory = [...attempt, currentGuess];
-                //     setAttemptCount(count => count + 1);
-
-                //     const isCorrect = validateGuess(currentGuess);
-
-                //     if (isCorrect) {
-                //         // setHasWon(true);
-                //     } else if (newHistory.length >= MAX_GUESSES_ALLOWED) {
-                //         // setHasLost(true);
-                //     }
-
-                //     return newHistory;
-                // });
-
             }
             if (e.key === "Backspace") {
                 setCurrentGuess(currentGuess => currentGuess.slice(0, -1));
@@ -110,12 +100,14 @@ const GuessingUI = ({ currentWord, listOfMonsters, maxLength, maxGuesses, setHas
     }, [setIsControlHeld]);
 
     useEffect(() => {
+        if(guessHistory.length < maxGuesses){
+            
+            setShowBlinker(currentGuess.length<=0);
+        }else{
+            setShowBlinker(false);
+        }
         setLettersTyped(currentGuess.length);
-    }, [currentGuess, setLettersTyped]);
-
-    useEffect(() => {
-        // console.log("test", guessHistory);
-    }, [guessHistory]);
+    }, [currentGuess, setLettersTyped, guessHistory]);
 
     return (<div className="guessingUI min-w-[250px] min-h-[250px] max-w-[90%]">
         {/* <div className="xs:block sm:hidden">xs</div>
@@ -138,6 +130,7 @@ const GuessingUI = ({ currentWord, listOfMonsters, maxLength, maxGuesses, setHas
                 />
             )
         }
+        {showBlinker && <LetterBlock className={"blink"} Letter={"__"}/>}
         <div className={shakeAnimation ? "shake-animation" : ""}>
             <GuessAttempt guess={currentGuess} reveal={false} />
         </div>
