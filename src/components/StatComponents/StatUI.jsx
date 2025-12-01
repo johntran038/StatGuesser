@@ -3,8 +3,10 @@ import BasicStats from "./BasicStats";
 import StatModifier from "./StatModifiers";
 import ExtraStats from "./ExtraStats";
 import TraitsAndActions from "./TraitsAndActions";
+import StatToggle from "./HelperComponents/StatToggle";
+import StatHeader from "./StatHeader";
 
-const StatUI = ({ currentWordDetails }) => {
+const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses }) => {
     const [wordDetails, setWordDetails] = useState();
 
     const flattingDictionary = (list) => {
@@ -19,25 +21,36 @@ const StatUI = ({ currentWordDetails }) => {
         return wordDetails?.[type];
     };
 
+    const getType = () => {
+        return get("type").replace(
+            /\w\S*/g,
+            text => text.toLowerCase() === "of" ? "of" : text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+        );
+    }
+
     useEffect(() => {
         setWordDetails(currentWordDetails);
     }, [currentWordDetails]);
 
     useEffect(() => {
-        console.log(wordDetails?.legendary_actions, " dfsdfsdf");
+        // console.log(wordDetails, " dfsdfsdf");
     }, [wordDetails]);
 
 
-    return (<section className="mt-[2em] px-10 w-[60em]">
+    return (<section className="mt-[2em] px-10 w-[60em] md:w-[80%]">
         {wordDetails && (<div className="grid grid-cols-2">
+            <div className="flex justify-center col-span-2 mb-4">
+                <StatHeader
+                    reveal={reveal}
+                    answer={get("name")}
+                    type={get("type")}
+                    attemptCount={attemptCount}
+                    maxGuesses={maxGuesses}
+                />
+            </div>
             <div className="mr-10">
-                <section>
-                    <h2>Name: {get("name")}</h2>
-                    <h2>Type: {get("type")}</h2>
-                </section>
+                <StatToggle className="mb-3 space-y-1" title={"Stats"}>
 
-                <section>
-                    <h2>---Stats---</h2>
                     <BasicStats
                         ac={get("armor_class")}
                         hp={get("hit_points")}
@@ -53,10 +66,9 @@ const StatUI = ({ currentWordDetails }) => {
                         wisdom={get("wisdom")}
                         charisma={get("charisma")}
                     />
-                </section>
+                </StatToggle>
 
-                <section>
-                    <h2>---Extra---</h2>
+                <StatToggle className="mb-3 space-y-1" title={"Extra"}>
                     <ExtraStats
                         proficiencies={get("proficiencies")}
                         senses={get("senses")}
@@ -65,23 +77,35 @@ const StatUI = ({ currentWordDetails }) => {
                         xp={get("xp")}
                         pb={get("proficiency_bonus")}
                         flattingDictionary={flattingDictionary}
+                        answer={get("name")}
+                        censor={!reveal}
                     />
-                </section>
+                </StatToggle>
+                <StatToggle className="mb-3 space-y-1" title={"Actions"}>
+                    <TraitsAndActions
+                        data={get("actions")}
+                        answer={get("name")}
+                        censor={!reveal}
+                    />
+                </StatToggle>
             </div>
             <div>
-                <h2>---Traits---</h2>
-                <TraitsAndActions
-                    data={get("special_abilities")}
-                />
-                <h2>---Actions---</h2>
-                <TraitsAndActions
-                    data={get("actions")}
-                />
-                {(get("legendary_actions") != "N/A" && get("legendary_actions").length > 0) && (<>
-                    <h2>---Legendary Actions---</h2>
+                <StatToggle className="mb-3 space-y-1" title={"Traits"}>
                     <TraitsAndActions
-                        data={get("legendary_actions")}
+                        data={get("special_abilities")}
+                        answer={get("name")}
+                        censor={!reveal}
                     />
+                </StatToggle>
+
+                {(get("legendary_actions") != "N/A" && get("legendary_actions").length > 0) && (<>
+                    <StatToggle className="space-y-1" title={"Legendary Actions"}>
+                        <TraitsAndActions
+                            data={get("legendary_actions")}
+                            answer={get("name")}
+                            censor={!reveal}
+                        />
+                    </StatToggle>
                 </>)}
             </div>
         </div>

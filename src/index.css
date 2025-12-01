@@ -34,18 +34,18 @@
 }
 
 @keyframes shake {
-  /* 50% {
-    transform: translateX(-0.2em);
-  }
-  100% {
-    transform: translateX(0.2em);
-  } */
   0% { transform: translateX(0); }
   20% { transform: translateX(-0.2em); }
   40% { transform: translateX(0.2em); }
   60% { transform: translateX(-0.2em); }
   80% { transform: translateX(0.2em); }
   100% { transform: translateX(0); }
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
 
 #root {
@@ -71,37 +71,22 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
   cursor: pointer;
 }
 
 .letterbox {
   border: 1px solid transparent;
-  /* font-size: 1em; */
   font-weight: 500;
   font-family: inherit;
-  background-color: white;
-  /* margin: 0.5em; */
-  /* width: 2.5em;
-  height: 2.5em; */
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; 
-  /* outline: solid gray 3px; */
 }
 
 .guessingUI {
   margin-top: 2em;
   outline: solid black 1px;
-  /* min-height: 280px; */
-  /* min-width: 280px; */
-  /* place-items: center; */
 }
 
 .revealed-letter.correct {
@@ -118,4 +103,8 @@ button {
 
 .shake-animation{
   animation: shake 0.2s 2;
+}
+
+.blink {
+  animation: blink-animation 1s steps(2, start) infinite;
 }

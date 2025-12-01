@@ -3,12 +3,12 @@ import React from "react";
 const StatModifiers = ({ strength, dexterity, constitution, intelligence, wisdom, charisma }) => {
 
     const tdStyle = "px-2";
-    const topStyle = "bg-green-300";
-    const buttomStyle = "bg-blue-300";
+    const topStyle = "bg-[#EDEACA]";
+    const buttomStyle = "bg-[#C7C7C7]";
 
     const modifierStyle = "mr-[10px] font-[600]";
 
-    return (<>
+    return (<section>
         <table>
             <tbody>
                 <tr className="grid grid-cols-3 gap-4">
@@ -23,7 +23,7 @@ const StatModifiers = ({ strength, dexterity, constitution, intelligence, wisdom
                 </tr>
             </tbody>
         </table>
-    </>);
+    </section>);
 };
 
 export default StatModifiers;
