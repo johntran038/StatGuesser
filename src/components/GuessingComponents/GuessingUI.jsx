@@ -24,7 +24,7 @@ const GuessingUI = ({ currentWord, listOfMonsters,
 
     const validateGuess = (word) => {
         const isCorrect = currentWord.join('') == word.join('');
-        setIsCorrectWord(isCorrect);
+        // setIsCorrectWord(isCorrect);
         return isCorrect;
     };
 
@@ -45,6 +45,9 @@ const GuessingUI = ({ currentWord, listOfMonsters,
                     }, 300);
 
                     return;
+                }
+                if (validateGuess(currentGuess)){
+                    setIsCorrectWord(true);
                 }
                 setGuessHistory(attempt => [...attempt, currentGuess]);
                 setAttemptCount(count => count + 1);
@@ -102,12 +105,13 @@ const GuessingUI = ({ currentWord, listOfMonsters,
     useEffect(() => {
         if(guessHistory.length < maxGuesses){
             
-            setShowBlinker(currentGuess.length<=0);
-        }else{
+            setShowBlinker(currentGuess.length <= 0);
+        }
+        if(isCorrectWord){
             setShowBlinker(false);
         }
         setLettersTyped(currentGuess.length);
-    }, [currentGuess, setLettersTyped, guessHistory]);
+    }, [currentGuess, setLettersTyped, guessHistory, isCorrectWord]);
 
     return (<div className="guessingUI min-w-[250px] min-h-[250px] max-w-[90%]">
         {/* <div className="xs:block sm:hidden">xs</div>
