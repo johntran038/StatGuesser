@@ -4,6 +4,7 @@ import StatUI from "../components/StatComponents/StatUI";
 import useMonster from "../hooks/useMonster";
 import ListOfMonsters from "../components/ListOfMonsters";
 import Popup from "../components/Popup";
+import StatGuesserLogo from "../assets/StatGuesser.png"
 
 const Home = () => {
     const { loading, currentWord, resetKit, currentWordDetails, listOfMonsters, maxLength } = useMonster();
@@ -30,12 +31,12 @@ const Home = () => {
 
     useEffect(() => {
         if (playAgain) {
+            setHasWon(false);
+            setHasLost(false);
+            setAttemptCount(0);
+            setMaxGuesses(6);
+            setIsOpen(true);
             setTimeout(() => {
-                setHasWon(false);
-                setHasLost(false);
-                setAttemptCount(0);
-                setMaxGuesses(6);
-                setIsOpen(true);
                 setPlayAgain(false);
             }, 500);
         }
@@ -53,10 +54,14 @@ const Home = () => {
                             absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
                             bg-white border rounded-lg shadow-lg p-6 w-80 bg-white
                         ">
-                            <h2 className="text-xl font-bold">Game Over</h2>
-                            {hasWon && <div>You have won!</div>}
-                            {hasLost && <div>You have lost :(</div>}
-                            <p>The word is: {currentWordDetails.name}</p>
+                            <div className="flex flex-col items-center">
+                                
+                                <img className="w-20 h-20" src={StatGuesserLogo} alt="" />
+                                <h2 className="text-xl font-bold">{hasWon ? "Congratulations! You won!" : "Oh No!"}</h2>
+                                {hasWon && <div>You have won!</div>}
+                                {hasLost && <div>You have lost :(</div>}
+                                <p>The word is: {currentWordDetails?.name}</p>
+                            </div>
                         </Popup>
                     </div>
                 }

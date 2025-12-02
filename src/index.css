@@ -9,27 +9,33 @@
 @keyframes color-correct {
   50% {
     background-color: white;
+    color: black;
   }
   100% {
-    background-color: green;
+    background-color: #7BBB7B;
+    color: white;
   }
 }
 
 @keyframes color-almost-correct {
   50% {
     background-color: white;
+    color: black;
   }
   100% {
-    background-color: yellow;
+    background-color: #DAB444;
+    color: white;
   }
 }
 
 @keyframes color-incorrect {
   50% {
     background-color: white;
+    color: black;
   }
   100% {
-    background-color: gray;
+    background-color: #5E5E5E;
+    color: white;
   }
 }
 
@@ -46,6 +52,11 @@
   to {
     visibility: hidden;
   }
+}
+
+@keyframes fadein {
+  0% { opacity: 0%; }
+  100% { opacity: 100%; }
 }
 
 #root {
@@ -107,4 +118,8 @@ button {
 
 .blink {
   animation: blink-animation 1s steps(2, start) infinite;
+}
+
+.fadein {
+  animation: fadein 1s forwards;
 }

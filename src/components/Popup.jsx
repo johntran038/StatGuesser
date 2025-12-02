@@ -1,25 +1,29 @@
-const Popup = ({ isOpen, onClose, onPlayAgain, children }) => {
-  if (!isOpen) return null;
+import React from "react";
 
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 z-999">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-80">
-        {children}
-        <button
-          onClick={onPlayAgain}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Play Again
-        </button>
-        <button
-          onClick={onClose}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Close
-        </button>
+const Popup = ({ isOpen, onClose, onPlayAgain, children }) => {
+  return (<>
+    {isOpen &&
+      <div className="fixed inset-0 flex items-center justify-center z-999">
+        <div className="bg-white rounded-lg shadow-lg p-6 w-80 outline fadein">
+          {children}
+          <div className="flex justify-center gap-4">
+            <button
+              className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-gray-500"
+              onClick={onPlayAgain}
+            >
+              Play Again
+            </button>
+            <button
+              className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-gray-500"
+              onClick={onClose}
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    }
+  </>);
 };
 
 export default Popup;

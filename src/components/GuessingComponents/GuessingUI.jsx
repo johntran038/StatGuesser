@@ -24,7 +24,6 @@ const GuessingUI = ({ currentWord, listOfMonsters,
 
     const validateGuess = (word) => {
         const isCorrect = currentWord.join('') == word.join('');
-        // setIsCorrectWord(isCorrect);
         return isCorrect;
     };
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CensorAnswer from "./HelperComponents/CensorAnswer";
+import HideComponentByAttempt from "./HelperComponents/HideComponentByAttempt";
 
 const StatHeader = ({ reveal, answer, type, attemptCount, maxGuesses }) => {
 
@@ -15,7 +16,7 @@ const StatHeader = ({ reveal, answer, type, attemptCount, maxGuesses }) => {
             <div className="flex items-center space-x-2 order-1">
                 <h2 className="font-[600]">Name:</h2>
                 <CensorAnswer
-                    censor={!reveal}
+                    censor={reveal}
                     answer={answer}
                     description={answer}
                 />
@@ -23,9 +24,10 @@ const StatHeader = ({ reveal, answer, type, attemptCount, maxGuesses }) => {
 
             <div className="flex items-center space-x-2 order-3">
                 <h2 className="font-[600]">Type:</h2>
-                <div>{getType()}</div>
+                <HideComponentByAttempt reveal={reveal} revealAtAttempt={3} attemptCount={attemptCount}>
+                    <div>{getType()}</div>
+                </HideComponentByAttempt>
             </div>
-
             <div className="flex items-center space-x-2 order-2">
                 <h2 className="font-[600]">Attempt:</h2>
                 <div>{attemptCount}/{maxGuesses}</div>
