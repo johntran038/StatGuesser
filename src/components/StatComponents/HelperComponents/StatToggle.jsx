@@ -7,8 +7,8 @@ const StatToggle = ({ className, title, children }) => {
     const [addScroll, setAddScroll] = useState(true);
 
     return (<section className={className}>
-        <button className="bg-gray-400 flex justify-content-left w-[100%] p-1" onClick={() => setShowStats(!showStats)}>
-            <h2>---{title}---</h2>
+        <button className="bg-gray-600 flex justify-content-left w-[100%] p-1" onClick={() => setShowStats(!showStats)}>
+            <h2 className="text-white">---{title}---</h2>
             <BsChevronDown className={`self-center ml-auto transition-transform ${showStats ? 'rotate-180' : ''}`} />
         </button>
         <div className={`

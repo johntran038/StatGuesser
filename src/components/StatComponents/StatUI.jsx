@@ -40,7 +40,7 @@ const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses, playAgai
 
     return (<section className="mt-[2em] px-10 w-[60em] md:w-[80%]">
         {wordDetails && (<div className="">
-            <div className="flex justify-center col-span-2 mb-5 border-2 border-solid">
+            <div className="flex justify-center col-span-2 mb-5">
                 <StatHeader
                     reveal={reveal}
                     answer={get("name")}
@@ -104,7 +104,7 @@ const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses, playAgai
                 </StatToggle>
 
                 {(get("legendary_actions") != "N/A" && get("legendary_actions").length > 0) && (<>
-                    <StatToggle className="space-y-1" title={"Legendary Actions"}>
+                    <StatToggle className="mb-3 space-y-1 lg:col-span-2 lg:col-start-2 md:col-span-2 md:col-start-1" title={"Legendary Actions"}>
                         <HideComponentByAttempt className="space-y-1" reveal={reveal} revealAtAttempt={4} attemptCount={attemptCount}>
                             <TraitsAndActions
                                 data={get("legendary_actions")}
