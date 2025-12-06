@@ -4,7 +4,7 @@ import StatUI from "../components/StatComponents/StatUI";
 import useMonster from "../hooks/useMonster";
 import ListOfMonsters from "../components/ListOfMonsters";
 import Popup from "../components/Popup";
-import StatGuesserLogo from "../assets/StatGuesser.png"
+import Nav from "../components/Nav"
 
 const Home = () => {
     const { loading, currentWord, resetKit, currentWordDetails, listOfMonsters, maxLength } = useMonster();
@@ -42,6 +42,15 @@ const Home = () => {
         }
     }, [playAgain])
 
+    const openSettings = () => {
+        // open a modal / drawer
+        console.log("Settings clicked");
+    };
+
+    const openHelp = () => {
+        // open help dialog / route to /help
+        console.log("Help clicked");
+    };
 
     return (
         <div>
@@ -62,8 +71,8 @@ const Home = () => {
                 // When xl: bg is yellow
                 xl:bg-yellow-200
             */}
-            {/* Nav bar */}
-                <h1>Stat Guesser</h1>
+                {/* Nav bar */}
+                <Nav onSettingsClick={openSettings} onHelpClick={openHelp} />
             </div>
             {loading ? <p>Loading...</p> : (<div>
                 {(hasWon || hasLost) &&
@@ -76,7 +85,7 @@ const Home = () => {
                         ">
                             <div className="flex flex-col items-center">
 
-                                <img className="w-20 h-20" src={StatGuesserLogo} alt="" />
+                                <img className="w-20 h-20" src="./StatGuesser.png" alt="Logo" />
                                 <h2 className="text-xl font-bold">{hasWon ? "Congratulations! You won!" : "Oh No!"}</h2>
                                 {hasWon && <div>You have won!</div>}
                                 {hasLost && <div>You have lost :(</div>}
