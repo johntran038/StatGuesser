@@ -3,7 +3,7 @@ import GuessingUI from "../components/GuessingComponents/GuessingUI";
 import StatUI from "../components/StatComponents/StatUI";
 import useMonster from "../hooks/useMonster";
 import ListOfMonsters from "../components/HomeComponents/ListOfMonsters";
-import Popup from "../components/HomeComponents/Popupp";
+import Popup from "../components/HomeComponents/Popup";
 import Nav from "../components/HomeComponents/Nav"
 
 const Home = () => {
