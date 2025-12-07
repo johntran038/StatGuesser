@@ -1,4 +1,4 @@
-import{j as fe,r as ae,a as Oe,g as Mo,b as rn,R as Hh,c as _n}from"./index-D7vY1GcC.js";const Gh=({className:e,Letter:t,reveal:r,delay:a,color:n,isLastLetter:d,onComplete:f})=>{const m=r?`${{0:"incorrect",1:"almost-correct",2:"correct"}[n]} revealed-letter`:"";return fe.jsx("div",{className:e,children:fe.jsx("div",{className:`
+import{j as fe,r as ae,a as Oe,g as Mo,b as rn,R as Hh,c as _n}from"./index-CDbOuZTH.js";const Gh=({className:e,Letter:t,reveal:r,delay:a,color:n,isLastLetter:d,onComplete:f})=>{const m=r?`${{0:"incorrect",1:"almost-correct",2:"correct"}[n]} revealed-letter`:"";return fe.jsx("div",{className:e,children:fe.jsx("div",{className:`
             letterbox ${m} font-xl
             text-[1em] sm:text-[1em]
             p-[0.5em] sm:p-[0.1em] md:m-[0.1em] lg:m-[0.2em]
