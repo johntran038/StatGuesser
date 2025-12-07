@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import GuessingUI from "../components/GuessingComponents/GuessingUI";
 import StatUI from "../components/StatComponents/StatUI";
 import useMonster from "../hooks/useMonster";
-import ListOfMonsters from "../components/ListOfMonsters";
-import Popup from "../components/Popup";
-import Nav from "../components/Nav"
+import ListOfMonsters from "../components/HomeComponents/ListOfMonsters";
+import Popup from "../components/HomeComponents/Popupp";
+import Nav from "../components/HomeComponents/Nav"
 
 const Home = () => {
     const { loading, currentWord, resetKit, currentWordDetails, listOfMonsters, maxLength } = useMonster();
