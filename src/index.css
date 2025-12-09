@@ -11,6 +11,7 @@
     background-color: white;
     color: black;
   }
+
   100% {
     background-color: #7BBB7B;
     color: white;
@@ -22,6 +23,7 @@
     background-color: white;
     color: black;
   }
+
   100% {
     background-color: #DAB444;
     color: white;
@@ -33,6 +35,7 @@
     background-color: white;
     color: black;
   }
+
   100% {
     background-color: #5E5E5E;
     color: white;
@@ -40,12 +43,29 @@
 }
 
 @keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-0.2em); }
-  40% { transform: translateX(0.2em); }
-  60% { transform: translateX(-0.2em); }
-  80% { transform: translateX(0.2em); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-0.2em);
+  }
+
+  40% {
+    transform: translateX(0.2em);
+  }
+
+  60% {
+    transform: translateX(-0.2em);
+  }
+
+  80% {
+    transform: translateX(0.2em);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes blink-animation {
@@ -55,8 +75,13 @@
 }
 
 @keyframes fadein {
-  0% { opacity: 0%; }
-  100% { opacity: 100%; }
+  0% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
 }
 
 #root {
@@ -85,14 +110,24 @@ button {
   cursor: pointer;
 }
 
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+*:focus-visible {
+  border: 3px solid #7BBB7B;
+  box-shadow: none;
+}
+
 .letterbox {
   border: 1px solid transparent;
   font-weight: 500;
   font-family: inherit;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .guessingUI {
@@ -108,11 +143,11 @@ button {
   animation: flip 0.5s forwards, color-almost-correct 0.5s forwards;
 }
 
-.revealed-letter.incorrect   {
+.revealed-letter.incorrect {
   animation: flip 0.5s forwards, color-incorrect 0.5s forwards;
 }
 
-.shake-animation{
+.shake-animation {
   animation: shake 0.2s 2;
 }
 
@@ -122,4 +157,16 @@ button {
 
 .fadein {
   animation: fadein 1s forwards;
+}
+
+.correct {
+  background-color: #7BBB7B;
+}
+
+.almost-correct {
+  background-color: #DAB444;
+}
+
+.incorrect {
+  background-color: #5E5E5E;
 }

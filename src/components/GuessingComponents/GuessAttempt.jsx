@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import LetterBlock from "./LetterBlock";
 
 //Completed 100%
-const GuessAttempt = ({ guess, answer, reveal, onComplete }) => {
+const GuessAttempt = ({ className, guess, answer, reveal, onComplete, setKeyboardColors }) => {
     
     const validateGuess = useMemo(() => {
         if (!answer || !reveal) {
@@ -46,8 +46,13 @@ const GuessAttempt = ({ guess, answer, reveal, onComplete }) => {
 
     }, [guess, answer, reveal]);
 
+    useEffect(()=>{
+        if(!setKeyboardColors) return;
+        setKeyboardColors([guess, validateGuess]);
+    }, [validateGuess]);
+
     return (<>
-        <span className="flex">
+        <span className={`flex ${className}`}>
             {
                 guess.map((letter, index) =>
                     <LetterBlock

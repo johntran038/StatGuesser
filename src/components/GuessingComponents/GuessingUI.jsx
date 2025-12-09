@@ -4,7 +4,7 @@ import LetterBlock from "./LetterBlock";
 
 const GuessingUI = ({ currentWord, listOfMonsters,
     maxLength, maxGuesses,
-    setHasWon, setHasLost, setAttemptCount, playAgain
+    setHasWon, setHasLost, setAttemptCount, playAgain, setKeyboardColors
 }) => {
     const [guessHistory, setGuessHistory] = useState([]);
     const [currentGuess, setCurrentGuess] = useState([]);
@@ -42,7 +42,6 @@ const GuessingUI = ({ currentWord, listOfMonsters,
 
     useEffect(() => {
         const keyPressEvent = (e) => {
-            setShowBlinker(false);
             if (guessHistory.length >= MAX_GUESSES_ALLOWED
                 || isControlHeld || isCorrectWord) {
                 return;
@@ -76,6 +75,7 @@ const GuessingUI = ({ currentWord, listOfMonsters,
             }
             if (isLetter) {
                 setCurrentGuess(currentGuess => [...currentGuess, e.key.toUpperCase()]);
+                setShowBlinker(false);
             }
         };
 
@@ -128,7 +128,7 @@ const GuessingUI = ({ currentWord, listOfMonsters,
         {
             guessHistory.map((guess, index) =>
                 <GuessAttempt key={index}
-                    guess={guess} answer={currentWord} reveal={true}
+                    guess={guess} answer={currentWord} reveal={true} setKeyboardColors={setKeyboardColors}
                     onComplete={() => {
                         const isCorrect = validateGuess(guess);
                         if (isCorrect) {

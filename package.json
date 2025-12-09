@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "deploy": "gh-pages -d dist",
-    "postdeploy": "echo 'Deployed at: https://johntran038.github.io/StatGuesser/'",
+    "postdeploy": "powershell Write-Host 'Deployed at:' -ForegroundColor Green; powershell Write-Host 'https://johntran038.github.io/StatGuesser/' -ForegroundColor Blue",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -1,5 +1,4 @@
 import React from "react";
-import { Tooltip } from "@material-tailwind/react";
 import CensorAnswer from "./HelperComponents/CensorAnswer";
 
 const TraitsAndActions = ({ data, answer, censor }) => {
