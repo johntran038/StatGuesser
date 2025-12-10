@@ -1,8 +1,8 @@
 # <img src="./public/StatGuesser.png" alt="logo" width="50px"/> Stat Guesser
 
-A word game inspired by Wordle.
-You are given a random monster from the D&D 5th Edition API.
-Guess the creature to win!
+A word game inspired by Wordle.<br/>
+You are given a random monster from the D&D 5th Edition API.<br/>
+Guess the creature to win!<br/>
 
 [Play Now!](https://johntran038.github.io/StatGuesser/)
 
