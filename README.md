@@ -1,8 +1,16 @@
-# React + Vite
+# Stat Guesser
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A word game inspired by Wordle.
+You are given a random monster from the D&D 5th Edition API.
+Guess the creature to win!
 
-Currently, two official plugins are available:
+[Play Now!](https://johntran038.github.io/StatGuesser/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Here are some simple rules and features to be officially added
+- No spaces, numbers, apostrophes, or other special characters, only letters can be entered.
+- Like Wordle, you have only 6 attempts to guess.
+  - Each time you take a guess, one of the monsteres stats are revealed to help you figure out which creature it is.
+  - All of the statss will be revealed at the end of the game.
+- Unlike Wordle, there not every answer will be the same length. (As of right now the longest word is 22 letters)
+- You can use the keyboard on screen or your actual keyboard to enter your guess.
+- If you aren't sure which monsters exist, you can check the list of monsters underneath the stats.
