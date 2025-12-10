@@ -11,6 +11,6 @@ Here are some simple rules and features to be officially added
 - Like Wordle, you have only 6 attempts to guess.
   - Each time you take a guess, one of the monster's stats is revealed to help you guess the creature.
   - All of the stats will be revealed at the end of the game.
-- Unlike Wordle, there not every answer will be the same length. (As of right now the longest word is 22 letters)
+- Unlike Wordle, there not every answer will be the same length. (As of right now, the longest word is 22 letters)
 - You can use the keyboard on screen or your actual keyboard to enter your guess.
 - If you aren't sure which monsters exist, you can check the list of monsters underneath the stats.
