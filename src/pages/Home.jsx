@@ -44,7 +44,6 @@ const Home = () => {
             setAttemptCount(0);
             setMaxGuesses(MAX_GUESSES);
             setMenuOpen(false);
-            keyboardColors([]);
             setTimeout(() => {
                 setPlayAgain(false);
             }, 500);
@@ -84,7 +83,7 @@ const Home = () => {
             {/* Nav bar */}
             <Nav onMenuClick={() => setMenuOpen(true)} onHelpClick={openHelp} keyboardOn={toggleKeyboard} onKeyboardClick={() => setToggleKeyboard(prev => !prev)} />
             {toggleKeyboard &&
-                <KeyboardPopUp isOpen={true} colors={keyboardColors} setKeyboardInput={setKeyboardInput} />
+                <KeyboardPopUp isOpen={true} colors={keyboardColors} setKeyboardInput={setKeyboardInput} playAgain={playAgain}/>
             }
             {loading ? <p>Loading...</p> : (
                 <div>

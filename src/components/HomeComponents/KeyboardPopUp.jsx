@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LetterBlock from "../GuessingComponents/LetterBlock";
 import { FaBackspace } from "react-icons/fa";
 
-const KeyboardPopUp = ({ isOpen, colors, setKeyboardInput }) => {
+const KeyboardPopUp = ({ isOpen, colors, setKeyboardInput, playAgain }) => {
 
     const [evaluateLetter, setEvaluateLetter] = useState({});
 
@@ -36,6 +36,12 @@ const KeyboardPopUp = ({ isOpen, colors, setKeyboardInput }) => {
             }));
         }
     }, [colors]);
+
+    useEffect(()=>{
+        if(playAgain){
+            setEvaluateLetter({});
+        }
+    }, [playAgain]);
 
 
     return (<>
