@@ -6,7 +6,7 @@ Guess the creature to win!
 
 [Play Now!](https://johntran038.github.io/StatGuesser/)
 
-Here are some simple rules and features to be officially added
+Here are some simple rules and features to be officially added:
 - No spaces, numbers, apostrophes, or other special characters, only letters can be entered.
 - Like Wordle, you have only 6 attempts to guess.
   - Each time you take a guess, one of the monster's stats is revealed to help you guess the creature.
