@@ -73,6 +73,7 @@ const KeyboardPopUp = ({ isOpen, colors, setKeyboardInput }) => {
                             "
                             Letter={<FaBackspace />}
                             onClick={setKeyboardInput}
+                            test = {"Backspace"}
                         />
                     </span>
                 </div>

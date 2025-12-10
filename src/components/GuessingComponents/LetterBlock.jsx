@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { FaBackspace } from "react-icons/fa";
 
-const LetterBlock = ({className, Letter, reveal, delay, color, isLastLetter, onComplete, onClick}) => {
+const LetterBlock = ({className, Letter, reveal, delay, color, isLastLetter, onComplete, onClick, test}) => {
 
     const colors={0: 'incorrect', 1:'almost-correct', 2: 'correct'}
 
     const letterStyle = reveal ? `${colors[color]} revealed-letter`: "";
 
     const getLetter = (Letter) => {
-        if(Letter?.type?.name === "FaBackspace") return "Backspace";
+        // if(Letter?.type?.name === "FaBackspace") return "Backspace";
+        if(test) return test;
         return Letter;
     };
 
