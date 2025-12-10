@@ -71,9 +71,6 @@ const GuessingUI = ({ currentWord, listOfMonsters, keyboardInput,
             if (pressed(key, "Backspace")) {
                 setCurrentGuess(currentGuess => currentGuess.slice(0, -1));
             }
-            if (key === " ") {
-                e.preventDefault();
-            }
             if (lettersTyped >= MAX_LETTERS_ALLOWED) {
                 return;
             }
@@ -89,6 +86,9 @@ const GuessingUI = ({ currentWord, listOfMonsters, keyboardInput,
         }
 
         const keyPressEvent = (e) => {
+            if (e.key === " ") {
+                e.preventDefault();
+            }
             handleKeyPress(e.key);
         };
 

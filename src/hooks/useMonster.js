@@ -12,14 +12,17 @@ const useMonster = () => {
     return word.toUpperCase().replace(/[^a-zA-Z]/g, "")
   };
 
-  const setRandomIndex = async (data) => {
+  const setRandomIndex = async (data, setTo = null) => {
     // Pick a random monster
     const randomIndex = Math.floor(Math.random() * data.count);
     const monsterIndex = data.results[randomIndex].index;
 
+    console.log(setTo, "dddddddddddddddddd");
+    
+
     // Fetch monster details
     const detailRes = await fetch(
-      `https://www.dnd5eapi.co/api/2014/monsters/${monsterIndex}`
+      `https://www.dnd5eapi.co/api/2014/monsters/${setTo || monsterIndex}`
       // `https://www.dnd5eapi.co/api/2014/monsters/ancient-black-dragon`
       // `https://www.dnd5eapi.co/api/2014/monsters/wereboar-hybrid`
       // `https://www.dnd5eapi.co/api/2014/monsters/vampire-mist`

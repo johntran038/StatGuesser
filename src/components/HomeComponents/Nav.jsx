@@ -13,7 +13,7 @@ export default function Nav({ onHelpClick, onMenuClick, keyboardOn, onKeyboardCl
                 </div>
 
                 <div className="flex items-center gap-3">
-                    <button
+                    {/* <button
                         type="button"
                         aria-label="Help"
                         className="p-2 rounded-md hover:bg-gray-100 focus:outline-none"
@@ -21,7 +21,7 @@ export default function Nav({ onHelpClick, onMenuClick, keyboardOn, onKeyboardCl
                         title="Help"
                     >
                         <FaQuestion className="h-6 w-6 text-gray-700" />
-                    </button>
+                    </button> */}
                     <button
                         type="button"
                         aria-label="Settings"

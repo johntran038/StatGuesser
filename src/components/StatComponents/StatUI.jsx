@@ -34,7 +34,7 @@ const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses, playAgai
     }, [currentWordDetails]);
 
     useEffect(() => {
-        // console.log(wordDetails, " dfsdfsdf");
+        console.log(wordDetails, " dfsdfsdf");
     }, [wordDetails]);
 
 

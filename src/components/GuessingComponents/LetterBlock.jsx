@@ -14,7 +14,7 @@ const LetterBlock = ({className, Letter, reveal, delay, color, isLastLetter, onC
 
     return(<div className={className}>
         <div className={`
-            letterbox ${letterStyle} font-xl
+            letterbox ${letterStyle} font-xl select-none
             text-[1em] sm:text-[1em]
             sm:p-[0.1em] md:m-[0.1em] lg:m-[0.2em]
             w-[0.9rem] sm:w-[1.5em] md:w-[2em] lg:w-[2.5em]

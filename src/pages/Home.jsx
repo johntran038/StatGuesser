@@ -8,18 +8,23 @@ import Nav from "../components/HomeComponents/Nav"
 import KeyboardPopUp from "../components/HomeComponents/KeyboardPopUp";
 
 const Home = () => {
+
+    const MAX_GUESSES = 6;
+
     const { loading, currentWord, resetKit, currentWordDetails, listOfMonsters, maxLength } = useMonster();
     const [hasWon, setHasWon] = useState(false);
     const [hasLost, setHasLost] = useState(false);
     const [attemptCount, setAttemptCount] = useState(0);
-
-    const [maxGuesses, setMaxGuesses] = useState(6);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [toggleKeyboard, setToggleKeyboard] = useState(true);
     const [playAgain, setPlayAgain] = useState(false);
 
+    const [maxGuesses, setMaxGuesses] = useState(MAX_GUESSES);
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const [toggleKeyboard, setToggleKeyboard] = useState(true);
     const [keyboardInput, setKeyboardInput] = useState('');
     const [keyboardColors, setKeyboardColors] = useState([]);
+
+    const [showDemo, setShowDemo] = useState(false);
 
     useEffect(() => {
         // If you win or lose, show the popup
@@ -37,14 +42,24 @@ const Home = () => {
             setHasWon(false);
             setHasLost(false);
             setAttemptCount(0);
-            setMaxGuesses(6);
-            setIsOpen(true);
+            setMaxGuesses(MAX_GUESSES);
             setMenuOpen(false);
             setTimeout(() => {
                 setPlayAgain(false);
             }, 500);
         }
     }, [playAgain])
+
+    useEffect(() => {
+        if (showDemo) {
+            setAttemptCount(0);
+            setMaxGuesses(MAX_GUESSES);
+            resetKit.randomize(resetKit.data, "blink-dog");
+        } else {
+            if(loading) return;
+            resetKit.randomize(resetKit.data);
+        }
+    }, [showDemo]);
 
 
     const openHelp = () => {
@@ -67,20 +82,26 @@ const Home = () => {
             <div className="hidden xl:block">xl</div> */}
             {/* Nav bar */}
             <Nav onMenuClick={() => setMenuOpen(true)} onHelpClick={openHelp} keyboardOn={toggleKeyboard} onKeyboardClick={() => setToggleKeyboard(prev => !prev)} />
-            {toggleKeyboard && 
-                <KeyboardPopUp isOpen={true} colors={keyboardColors} setKeyboardInput={setKeyboardInput}/>
+            {toggleKeyboard &&
+                <KeyboardPopUp isOpen={true} colors={keyboardColors} setKeyboardInput={setKeyboardInput} />
             }
             {loading ? <p>Loading...</p> : (
                 <div>
                     <MenuPopUp isOpen={menuOpen} onClose={() => { setMenuOpen(false); }} hasWon={hasWon} hasLost={hasLost}
-                        onPlayAgain={() => { setPlayAgain(true); resetKit.randomize(resetKit.data); setIsOpen(false) }}
+                        onPlayAgain={() => {
+                            setPlayAgain(true);
+                            resetKit.randomize(resetKit.data, showDemo ? "blink-dog": null);
+                        }}
                         currentWordDetails={currentWordDetails}
+                        showDemo={showDemo} setShowDemo={setShowDemo}
                         className="
                             absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
                             bg-white border rounded-lg shadow-lg p-6 w-80 bg-white
                         "
                     />
-
+                    {showDemo &&
+                        <div className="flex justify-center text-xl font-bold">(Demo) Answer is "BLINKDOG"</div>
+                    }
                     <div className="flex justify-center">
                         <GuessingUI currentWord={currentWord}
                             listOfMonsters={listOfMonsters} maxLength={maxLength}

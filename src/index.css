@@ -159,14 +159,14 @@ button {
   animation: fadein 1s forwards;
 }
 
-.correct {
+.correct-color {
   background-color: #7BBB7B;
 }
 
-.almost-correct {
+.almost-correct-color {
   background-color: #DAB444;
 }
 
-.incorrect {
+.incorrect-color {
   background-color: #5E5E5E;
 }
