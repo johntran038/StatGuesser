@@ -15,8 +15,10 @@ const Home = () => {
 
     const [maxGuesses, setMaxGuesses] = useState(6);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [toggleKeyboard, setToggleKeyboard] = useState(true);
     const [playAgain, setPlayAgain] = useState(false);
 
+    const [keyboardInput, setKeyboardInput] = useState('');
     const [keyboardColors, setKeyboardColors] = useState([]);
 
     useEffect(() => {
@@ -28,7 +30,7 @@ const Home = () => {
             // Restore scrolling
             document.body.style.overflow = "auto";
         }
-    }, [menuOpen, hasWon, hasLost]);    
+    }, [menuOpen, hasWon, hasLost]);
 
     useEffect(() => {
         if (playAgain) {
@@ -59,27 +61,18 @@ const Home = () => {
     return (
         <div>
             {/* <div className="xs:block sm:hidden">xs</div>
-                <div className="hidden sm:block md:hidden">small</div>
-                <div className="hidden md:block lg:hidden">medium</div>
-                <div className="hidden lg:block xl:hidden">large</div>
-                <div className="hidden xl:block">xl</div> 
-                //EXAMPLE:
-                // By default (xs): bg is blue
-                    bg-blue-200
-                // When sm or bigger: bg is green
-                    sm:bg-green-200
-                // When md or bigger: bg is red
-                // I skipped adding lg so md and lg will also be red
-                    md:bg-red-200
-                // When xl: bg is yellow
-                xl:bg-yellow-200
-            */}
+            <div className="hidden sm:block md:hidden">small</div>
+            <div className="hidden md:block lg:hidden">medium</div>
+            <div className="hidden lg:block xl:hidden">large</div>
+            <div className="hidden xl:block">xl</div> */}
             {/* Nav bar */}
-            <Nav onMenuClick={() => setMenuOpen(true)} onHelpClick={openHelp} />
-            <KeyboardPopUp isOpen={true} colors={keyboardColors}/>
+            <Nav onMenuClick={() => setMenuOpen(true)} onHelpClick={openHelp} keyboardOn={toggleKeyboard} onKeyboardClick={() => setToggleKeyboard(prev => !prev)} />
+            {toggleKeyboard && 
+                <KeyboardPopUp isOpen={true} colors={keyboardColors} setKeyboardInput={setKeyboardInput}/>
+            }
             {loading ? <p>Loading...</p> : (
                 <div>
-                    <MenuPopUp isOpen={menuOpen} onClose={() => {setMenuOpen(false);}} hasWon={hasWon} hasLost={hasLost}
+                    <MenuPopUp isOpen={menuOpen} onClose={() => { setMenuOpen(false); }} hasWon={hasWon} hasLost={hasLost}
                         onPlayAgain={() => { setPlayAgain(true); resetKit.randomize(resetKit.data); setIsOpen(false) }}
                         currentWordDetails={currentWordDetails}
                         className="
@@ -96,6 +89,8 @@ const Home = () => {
                             setAttemptCount={setAttemptCount}
                             maxGuesses={maxGuesses}
                             playAgain={playAgain}
+                            keyboardInput={keyboardInput}
+                            setKeyboardInput={setKeyboardInput}
                             setKeyboardColors={setKeyboardColors}
                         />
                     </div>

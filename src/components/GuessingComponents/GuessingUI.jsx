@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import GuessAttempt from "./GuessAttempt";
 import LetterBlock from "./LetterBlock";
 
-const GuessingUI = ({ currentWord, listOfMonsters,
+const GuessingUI = ({ currentWord, listOfMonsters, keyboardInput,
     maxLength, maxGuesses,
-    setHasWon, setHasLost, setAttemptCount, playAgain, setKeyboardColors
+    setHasWon, setHasLost, setAttemptCount, playAgain, setKeyboardInput, setKeyboardColors
 }) => {
     const [guessHistory, setGuessHistory] = useState([]);
     const [currentGuess, setCurrentGuess] = useState([]);
@@ -41,13 +41,17 @@ const GuessingUI = ({ currentWord, listOfMonsters,
     }, [playAgain]);
 
     useEffect(() => {
-        const keyPressEvent = (e) => {
+        const pressed = (key, name) => {
+            return key === name || keyboardInput === name;
+        }
+
+        const handleKeyPress = (key) => {
             if (guessHistory.length >= MAX_GUESSES_ALLOWED
                 || isControlHeld || isCorrectWord) {
                 return;
             }
-            const isLetter = /^[A-Za-z]$/.test(e.key);
-            if (e.key === "Enter" && currentGuess.length > 0) {
+            const isLetter = /^[A-Za-z]$/.test(key);
+            if (pressed(key, "Enter") && currentGuess.length > 0) {
                 if (!findMonster(currentGuess)) {
                     setShakeAnimation(true);
 
@@ -64,19 +68,28 @@ const GuessingUI = ({ currentWord, listOfMonsters,
                 setAttemptCount(count => count + 1);
                 setCurrentGuess([]);
             }
-            if (e.key === "Backspace") {
+            if (pressed(key, "Backspace")) {
                 setCurrentGuess(currentGuess => currentGuess.slice(0, -1));
             }
-            if (e.key === " ") {
+            if (key === " ") {
                 e.preventDefault();
             }
             if (lettersTyped >= MAX_LETTERS_ALLOWED) {
                 return;
             }
             if (isLetter) {
-                setCurrentGuess(currentGuess => [...currentGuess, e.key.toUpperCase()]);
+                setCurrentGuess(currentGuess => [...currentGuess, key.toUpperCase()]);
                 setShowBlinker(false);
             }
+        };
+
+        if(keyboardInput != '') {
+            handleKeyPress(keyboardInput)
+            setKeyboardInput('');
+        }
+
+        const keyPressEvent = (e) => {
+            handleKeyPress(e.key);
         };
 
         window.addEventListener("keydown", keyPressEvent);
@@ -84,7 +97,7 @@ const GuessingUI = ({ currentWord, listOfMonsters,
         return () => {
             window.removeEventListener("keydown", keyPressEvent);
         };
-    }, [currentGuess, lettersTyped, guessHistory, isControlHeld, isCorrectWord]);
+    }, [currentGuess, lettersTyped, guessHistory, isControlHeld, isCorrectWord, keyboardInput]);
 
     useEffect(() => {
         const keyReleaseEvent = (e) => {
