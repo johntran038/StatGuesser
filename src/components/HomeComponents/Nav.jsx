@@ -5,7 +5,7 @@ import { FaKeyboard } from "react-icons/fa";
 
 
 export default function Nav({ onHelpClick, onMenuClick, keyboardOn, onKeyboardClick }) {
-    return (<div className="sticky top-0">
+    return (<div className="sticky top-0 z-999">
         <nav className="w-full bg-white border-b border-gray-200">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
                 <div className="flex items-center gap-2">
