@@ -14,3 +14,8 @@ Here are some simple rules and features to be officially added:
 - Unlike Wordle, there not every answer will be the same length. (As of right now, the longest word is 22 letters)
 - You can use the keyboard on screen or your actual keyboard to enter your guess.
 - If you aren't sure which monsters exist, you can check the list of monsters underneath the stats.
+
+# How to run by download:
+After downloading the files, go to the terminal:
+- `npm install` to get the node modules.
+- Use `npm run dev` to run the local host server.
