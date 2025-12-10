@@ -44,6 +44,7 @@ const Home = () => {
             setAttemptCount(0);
             setMaxGuesses(MAX_GUESSES);
             setMenuOpen(false);
+            keyboardColors([]);
             setTimeout(() => {
                 setPlayAgain(false);
             }, 500);
