@@ -63,8 +63,8 @@ const Home = () => {
 
 
     const openHelp = () => {
+        // if we have time
         // open help dialog / route to /help
-        console.log("Help clicked");
     };
 
     useEffect(() => {

@@ -33,10 +33,6 @@ const StatUI = ({ currentWordDetails, reveal, attemptCount, maxGuesses, playAgai
         setWordDetails(currentWordDetails);
     }, [currentWordDetails]);
 
-    useEffect(() => {
-        console.log(wordDetails, " dfsdfsdf");
-    }, [wordDetails]);
-
 
     return (<section className="mt-[2em] px-10 w-[60em] md:w-[80%]">
         {wordDetails && (<div className="">

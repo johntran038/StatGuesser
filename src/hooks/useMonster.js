@@ -17,9 +17,6 @@ const useMonster = () => {
     const randomIndex = Math.floor(Math.random() * data.count);
     const monsterIndex = data.results[randomIndex].index;
 
-    console.log(setTo, "dddddddddddddddddd");
-    
-
     // Fetch monster details
     const detailRes = await fetch(
       `https://www.dnd5eapi.co/api/2014/monsters/${setTo || monsterIndex}`
