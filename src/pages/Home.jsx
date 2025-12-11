@@ -74,7 +74,7 @@ const Home = () => {
     }, [hasWon, hasLost]);
 
     return (
-        <div>
+        <div className="mb-70">
             {/* <div className="xs:block sm:hidden">xs</div>
             <div className="hidden sm:block md:hidden">small</div>
             <div className="hidden md:block lg:hidden">medium</div>
