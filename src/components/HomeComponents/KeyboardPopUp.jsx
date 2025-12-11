@@ -32,7 +32,7 @@ const KeyboardPopUp = ({ isOpen, colors, setKeyboardInput, playAgain }) => {
         for (let i = 0; i < colors[0].length; i++) {
             setEvaluateLetter(prev => ({
                 ...prev,
-                [colors[0][i]]: colors[1][i]
+                [colors[0][i]]: Math.max(prev[colors[0][i]] ?? 0, colors[1][i])
             }));
         }
     }, [colors]);
